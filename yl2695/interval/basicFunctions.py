@@ -128,3 +128,16 @@ def isInputIntervalListValid(intervalString):
         else:
             return False
     return True
+
+
+def splitInputIntervalString(intervalString):
+    '''
+    Assume the interval list string the user inputs is satisfactory. Then split them into intervals.
+    '''
+    # delete all the blank spaces in the string first.
+    intervalString = ''.join(intervalString.split())
+
+    # use re.findall to split the intervalString into all the satisfactory interval strings.
+    target_stringList = re.findall(r'[\[\(]{1,1}-{0,1}[0-9]+\,+-{0,1}[0-9]+[\)\]]{1,1}', intervalString)
+
+    return target_stringList
