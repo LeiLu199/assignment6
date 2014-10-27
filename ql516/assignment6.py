@@ -1,4 +1,7 @@
-from interval import *
+from intervalClass import *
+from IntervalFunctions import *
+from exceptions import *
+
 
 #Q5: main 
 def main():
@@ -21,7 +24,7 @@ def main():
         for i in range(len(StringIntervalList)):
             intval_list.append(interval(StringIntervalList[i]))
     except:
-        print "Invalid Interval List, program end"
+        print "Invalid interval list, program end"
         end = True
     while not end:
         NewInterval=raw_input("Interval?")
@@ -34,7 +37,6 @@ def main():
         except:
             print 'Invalid Interval'
             continue
-
 
 
 
