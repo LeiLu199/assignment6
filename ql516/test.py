@@ -8,7 +8,7 @@ from IntervalFunctions import *
 class TestMergeIntervalsFunction(unittest.TestCase):
 
     def test_not_overlapping(self):
-        with self.assertRaises(Exception):
+        with self.assertRaises(NotOverlap):
             mergeIntervals(interval("[1,4]"),interval("[7,10]"))
     
     def test_overlapping1(self):
@@ -32,8 +32,6 @@ class TestMergeOverlappingFunction(unittest.TestCase):
     def test_function(self):
         self.result = mergeOverlapping(self.interval_list)
         self.assertEqual(str(self.result),self.answer)
-
-
 
 
 

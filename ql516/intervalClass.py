@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from IntervalExceptions import *
 
 # Q1: Class  
 class interval(object):
@@ -38,13 +39,13 @@ class interval(object):
         elif strr[0]=='(':
             self.l=False
         else :
-            raise Exception("interval bound not found")
+            raise InValidInterval()
         if strr[-1]==']':
             self.u=True
         elif strr[-1]==')':
             self.u=False
         else:
-            raise Exception("interval bound not found")
+            raise InValidInterval()
         coma_i=strr.index(',')
         self.x=int(strr[1:coma_i])
         self.y=int(strr[coma_i+1:-1])

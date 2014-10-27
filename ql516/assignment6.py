@@ -1,6 +1,6 @@
 from intervalClass import *
 from IntervalFunctions import *
-from exceptions import *
+from IntervalExceptions import *
 
 
 #Q5: main 

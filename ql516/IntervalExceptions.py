@@ -7,9 +7,10 @@ class InValidIntervalList(Exception):
     pass
 
 
-
 class InValidInterval(Exception):
     "raise when the interval is invalid"
+    def __str__(self):
+        return "Invalid intervals"
     pass
 
 class NotOverlap(Exception):

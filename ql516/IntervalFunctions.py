@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from intervalClass import *
-
+from IntervalExceptions import *
 
 def isOverlaping(int1,int2):
      """
@@ -45,8 +45,9 @@ def mergeIntervals(int1, int2):
     Exception: Not Overlap !
     
     """
-    if not isOverlaping(int1,int2):                 #raise exception                
-        raise Exception("Not Overlap !")
+    if not isOverlaping(int1,int2):                 #raise exception 
+        raise NotOverlap()               
+    
     else:
         if int1.x<int2.x:
             MergedInterval_x=str(int1.x)
