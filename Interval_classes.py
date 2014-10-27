@@ -53,7 +53,7 @@ def parse_interval(initial):
     upper_bound = int(parts[1][:-1])
 
     #turn the bounds into inclusive
-    if lower_bracket == "(" :# if "("
+    if lower_bracket == "(" :
         lower_bound = lower_bound +1
 
     if upper_bracket == ")" :
@@ -148,7 +148,7 @@ def mergeOverlapping(all_intervals):
             all_intervals_sorted[0] = new_interval
         
         except (Intervals_Cannot_Merge) as e:
-            #print "in the right except" + str(e)
+
             maximally_merged.append(all_intervals_sorted.pop(0))
 
     maximally_merged.append(all_intervals_sorted[0]) 
