@@ -1,6 +1,13 @@
+#Po-Chih Lin, pcl322
+
 from interval.intervalClass import *
 from interval.intervalFunctions import *
 from interval.intervalExceptions import *
+
+"""
+Accept a list of intervals, and then insert the following inputted intervals
+merge any two if neccessary
+"""
 
 #Main function
 if __name__ == "__main__":

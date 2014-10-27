@@ -1,7 +1,6 @@
 from intervalExceptions import *
 import re
 
-
 #The class of interval
 class interval:
         def __init__(self, intervalString):
