@@ -15,6 +15,7 @@ def main():
     """
 
     originallist = raw_input('List of intervals? ')
+    #if we type 'quit', exit the program.
     if originallist == 'quit':
         sys.exit()
     
@@ -25,9 +26,11 @@ def main():
             break
         except (IntervalInputException,IntervalBoundException,IntervalListInputException) as error:
             print error
+            return
     
     newintervalstring = raw_input('Interval? ')
     
+    #until newintervalstring is 'quit', we insert newintervalstring into intervallist, and merge if they can be merged.
     while newintervalstring != 'quit':
         try:
             newinterval = interval(newintervalstring)
@@ -40,9 +43,6 @@ def main():
         except (IntervalInputException, IntervalBoundException) as error:
             print error
         newintervalstring = raw_input('Interval? ')
-def test():
-    int1=interval(22)
-    print int1
+
 if __name__ == '__main__':
     main()
-    #test()

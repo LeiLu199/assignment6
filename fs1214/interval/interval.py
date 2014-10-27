@@ -19,6 +19,9 @@ class interval:
             upper_inclusive(bool): If the input has ']', True;
                                    if the input has ')', False.
         }
+        
+        interval instance can be null.
+        If the interval is not valid, raise the exception,IntervalBoundException or IntervalInputException.
         """
         if interval_input != '':
             if IsValidInterval(interval_input):
@@ -33,7 +36,7 @@ class interval:
         """
         Get the range of the integers, return a list of the exact values of the interval.
         """ 
-        integers = range(self.lower+int(not self.lower_inclusive),self.upper+int(self.upper_inclusive))
+        integers = range(self.lower + int(not self.lower_inclusive),self.upper + int(self.upper_inclusive))
         return integers
     def __repr__(self):
         interval_rep = self.lower_inclusive*'['+(not self.lower_inclusive)*'('+str(self.lower)+','+str(self.upper)+self.upper_inclusive*']'+(not self.upper_inclusive)*')'
@@ -41,7 +44,9 @@ class interval:
 
 def ParseIntervalList(intervallist):
     """
-    Parse the input to a list of intervals. 
+    Parse the input to a list of intervals, return a list of interval class instance. 
+    If any interval in the intervallist is invalid, 
+    raise the exception, IntervalInputException, or IntervalBoundException, or IntervalListInputException.
     """
     if IsValidIntervalList(intervallist):
         #remove all the spaces in the interval 
@@ -72,8 +77,8 @@ def mergeIntervals(int1, int2):
     else:
         lower = min(Integers1 + Integers2)
         upper = max(Integers1 + Integers2)
-        # We assume that (a,...) has smaller lower bound than [a+1,...). So when they merge, the merged interval shoulb be (n,...). 
-        # The upper bound is similiarly treated.
+        # we assume that (a,...) has smaller lower bound than [a+1,...). So when they merge, the merged interval shoulb be (n,...). 
+        # the upper bound is similiarly treated.
         if lower in Integers1:
             if lower in Integers2 and int1.lower > int2.lower:
                 lower,lower_inclusive = int2.lower,int2.lower_inclusive
@@ -96,6 +101,7 @@ def mergeIntervals(int1, int2):
 def SortIntervallist(intervallist):
     """
     The input is a list of intervals. Sort this list according to the lower bound of intervals
+    In this way, we don't change the original intervallist, return another list sortedIntervallist.
     """
     sortedIntervallist = sorted(intervallist, key=lambda x:x.lower - x.lower_inclusive)
     return sortedIntervallist
@@ -103,26 +109,27 @@ def SortIntervallist(intervallist):
 def mergeOverlapping(intlist):
     """
     Merge the intervals in the list. If there are no intervals that could be merged, stop merging.
+    In this way, we don't change the original intlist, return another list mergeintervallist.
     """
     
-    #First sort the intlist.
+    #first sort the intlist.
     sortedIntervallist = SortIntervallist(intlist)
     
-    #Store the first interval into temp
+    #store the first interval into temp
     temp = sortedIntervallist[0]
-    #Store the final merged list
+    #store the final merged list
     mergeintervallist = []
     
     for i in range(len(sortedIntervallist)-1):
-        #Try to merge temp and one interval in the list. 
-        #If cannot merge, store this interval into temp and continue.
+        #try to merge temp and one interval in the list. 
+        #if cannot merge, store this interval into temp and continue.
         try:
             temp = mergeIntervals(temp, sortedIntervallist[i+1])
         except OverlapplingException:
             mergeintervallist.append(temp)
             temp = sortedIntervallist[i+1]
     
-    #Append the last interval.
+    #append the last interval.
     mergeintervallist.append(temp)   
     return mergeintervallist
 

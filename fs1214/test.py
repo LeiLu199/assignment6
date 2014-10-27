@@ -17,7 +17,6 @@ class TestIntervals(unittest.TestCase):
         self.interval = None
     def tearDown(self):
         print 'TestIntervals Over!'
-        self.interval = None
         
     def test_invalidInterval(self):
         invalidintervallist = ['(1,6]]','((4,7)','foo','{1,2]']
@@ -42,6 +41,7 @@ class TestMergeIntervals(unittest.TestCase):
     """
     def setUp(self):
         print 'Test whether two intervals can merge'
+        #interval1 and interval2 can be merged, and interval3 and interval4 cannot be merged.
         self.interval1 = interval('(1,4)')
         self.interval2 = interval('[1,3]')
         self.interval3 = interval('(3,8)')

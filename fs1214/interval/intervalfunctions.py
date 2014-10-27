@@ -9,12 +9,14 @@ def IsValidInterval(interval_input):
     """
     check whether the input of interval is a valid interval.
     A valid interval must have: '(' or '[', two integers separated by ',', and ')' or ']'.
+    
+    If interval_input is a valid interval, return True; otherwise return False.
     """
     
     #input of interval must be a string
     if isinstance(interval_input, str):
         #Check whether input of interval has a valid form
-        match = re.search('^\s*[\(\[]\s*-*\s*\d+\s*,\s*-*\s*\d+\s*[\)\]]\s*$',interval_input)
+        match = re.search('^\s*[\(\[]\s*\-?\d+\s*,\s*\-?\d+\s*[\)\]]\s*$',interval_input)
         if match:
             return True
         else:
@@ -40,7 +42,7 @@ def ParseIntervals(interval_input):
     
     """
     #remove all the spaces in the interval 
-    interval_nospace = interval_input.strip()
+    interval_nospace = interval_input.replace(" ","")
     
     #get the value of lower_inclusive and upper_inclusive
     if interval_nospace[0] == '(':
@@ -52,10 +54,10 @@ def ParseIntervals(interval_input):
     elif interval_nospace[-1] == ']':
         upper_inclusive = True
     
-    #get the value of lower and upper
+    #get the value of lower and upper.The first part before ',' has the lower, the second part after ',' has the upper.
     intervalparts = interval_nospace.split(',')
-    lowerpart = intervalparts[0].strip()
-    upperpart = intervalparts[-1].strip()
+    lowerpart = intervalparts[0]
+    upperpart = intervalparts[-1]
     lower = int(lowerpart[1:])
     upper = int(upperpart[:-1])
     
@@ -65,11 +67,14 @@ def IsValidBound(interval_input):
     """
     Check whether the interval exists. The interval must at least contain one integer. 
     The upperbound of interval must be more than the lowerbound of interval 
+    
+    If interval_input has a valid bound, return True; otherwise return False.
     """
     lower, upper, lower_inclusive, upper_inclusive = ParseIntervals(interval_input)
     
     #define the real value of bounds. real_lower represents lower bound, real_upper represents upper bound.
-    # (2,5]: real-lower = 3; real_upper = 5
+    #for example, (2,5]: real_lower = 3; real_upper = 5. It is a valid interval.
+    #             (2,3): real_lower = 3; real_upper = 2. It is not a valid interval.
     real_lower = lower + int(not lower_inclusive)
     real_upper = upper - int(not upper_inclusive)
     
@@ -81,6 +86,8 @@ def IsValidBound(interval_input):
 def IsValidIntervalList(intervallist):
     """
     Check whether the list of intervals are all valid 
+    
+    If all items in intervallist are valid, return True; otherwise return False.
     """
     #remove all the spaces in the interval 
     intervallist_nospace = intervallist.replace(" ","")
