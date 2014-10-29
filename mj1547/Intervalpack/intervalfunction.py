@@ -4,7 +4,9 @@
 '''
 import re
 def isInputIntervalvalid(inputintervalstring):
-    '''a function to check the inputstring is obey the format of interval or not'''
+    '''
+    a function to check the inputstring is obey the format of interval or not
+    '''
     #delete all the blank spaces
     inputintervalstring=inputintervalstring.replace(" ", "")
     # firstly,check the interval in a format begin with'('or'['and end with')'and "]"
