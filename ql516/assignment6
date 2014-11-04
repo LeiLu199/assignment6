@@ -1,0 +1,23 @@
+Last login: Mon Oct 27 12:25:55 on ttys000
+QingxiandeMacBook-Pro:ql516 LaiQX$ python assignment6.py
+List of intervals? [-10,-7], (-4,1], [3,6), (8,12), [15,23]
+Interval?[4,8]
+[[-10,-7], (-4,1], [3,12), [15,23]]
+Interval?[24,24]
+[[-10,-7], (-4,1], [3,12), [15,24]]
+Interval?[4,-1]
+Invalid Interval
+Interval?[12,13)
+[[-10,-7], (-4,1], [3,13), [15,24]]
+Interval?(3,4)
+Invalid Interval
+Interval?(2,12)
+[[-10,-7], (-4,1], (2,13), [15,24]]
+Interval?(-7,-2]
+[[-10,1], (2,13), [15,24]]
+Interval?foo
+Invalid Interval
+Interval?[-2,5]
+[[-10,13), [15,24]]
+Interval?quit
+QingxiandeMacBook-Pro:ql516 LaiQX$ 
